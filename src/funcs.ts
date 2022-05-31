@@ -89,13 +89,15 @@ export function getTodaysId(): number {
 export function getTargetWords(id: number): string[] {
   const targetWords: string[] = [];
   const rng = MersenneTwister(id);
-  while (targetWords.length < NUM_BOARDS) {
+  while (targetWords.length < NUM_BOARDS - 1) {
     const idx = rng.u32() % WORDS_TARGET.length;
     const word = WORDS_TARGET[idx];
     if (!targetWords.includes(word)) {
       targetWords.push(word);
     }
   }
+  targetWords.push("FIRST");
+  
   return targetWords;
 }
 
